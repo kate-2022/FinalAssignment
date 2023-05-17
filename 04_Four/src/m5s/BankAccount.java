@@ -86,6 +86,21 @@ public class BankAccount {
 				}
 				else
 					System.out.println("Not enough money available on your account!");
+				System.out.println("Please choose one of the options below: \n"
+						+ "Press 3 for Deposit\n"
+						+ "Press 4 for Exit");
+				choice= scan.nextInt();
+				if (choice==3) {
+					System.out.println("Please type in the amount you wish to deposit:");
+					deposit = scan.nextFloat();
+					newBalance = (balance+deposit);
+				setBalance(newBalance);
+					System.out.println("Your new balance is: " +newBalance + "Euro.");
+				}
+				else if (choice==4)
+					System.out.println("Thank you for your transaction, good bye!");
+				else 
+					System.out.println("no valid choice!");
 				
 		}
 		else if (choice==3) {
