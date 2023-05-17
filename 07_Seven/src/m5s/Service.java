@@ -22,7 +22,6 @@ public class Service {
 	public int runBinarySearchIteratively( int[] sortedArray, int key, int min, int max) {
 			    int index = Integer.MAX_VALUE;
 			    
-			    try {
 					while (min <= max) {
 					    int mid = min  + ((max - min) / 2);
 					    if (sortedArray[mid] < key) {
@@ -34,12 +33,8 @@ public class Service {
 					        break;
 					    }
 					}
-					System.out.println("Index of your target value is: " + index);
+	
 					return index;
-				} catch (Exception e) {
-				System.out.println("The target you searched for is not available!");
-				return 0;
-				}
 			}
 
 

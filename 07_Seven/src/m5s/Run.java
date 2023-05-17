@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Run {
 	static int [] arr;
 	static int size;
+	static int index;
 	
 
 	public static void main(String[] args) {
@@ -16,15 +17,22 @@ public class Run {
 		targetValue = scan.nextInt();
 		
 		Service service =new Service();
-		
 		arr = service.sortService();
+		
 		for(int elem: arr) {
-			System.out.print(elem +",");
+			System.out.print(elem +"_");
 		}
 		System.out.println();
-		service.runBinarySearchIteratively(arr,targetValue,arr[0], arr[size]);
+		index= service.runBinarySearchIteratively(arr,targetValue,arr[0], arr[size]);
 		
+		System.out.println(index);
+		System.out.println(targetValue);
+		System.out.println();
 		
+		if (index<=arr.length)
+				System.out.println("Index of your target value is: " + index);
+		else
+			System.out.println("The target you searched for is not available!");
 		scan.close();
 	}
 
