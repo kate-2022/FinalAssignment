@@ -2,8 +2,6 @@ package m5s;
 
 public abstract class AbstractClass {
 	
-	private int inti;
-	
 	public AbstractClass() {
 	
 	}
