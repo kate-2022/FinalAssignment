@@ -60,17 +60,25 @@ public class JdbcUtil {
 			ResultSet result = statement.executeQuery(selectQuery);
 			System.out.println("ResultSet object created");
 		
-			id = Integer.parseInt(result.getString("sid"));
-			address = result.getString("saddress");
-			age = Integer.parseInt(result.getString("sage"));					
+			try {
+			if(result!=null) 
+			{
+			id = result.getInt("sid");
+			address = result.getString("saddress");		
+			age = result.getInt("sage");	
 			name = result.getString("sname");
 			System.out.println(id +"\t"+ name +"\t"+age+"\t"+address);			
 			
 			System.out.println("StudentID\tStudentName\tStudentAge\tStudentAddress");
-			
-			return result;
+			}else {
+				System.out.println("No entry available!");				
+			}
               		
-	}
+	        }catch(SQLException se) {
+	        	se.printStackTrace();
+	        }
+			return result;
+	        }
 	
 	public static void cleanUp(Connection connection, Statement statement, ResultSet resultSet) throws SQLException 
 	{

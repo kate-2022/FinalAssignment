@@ -25,7 +25,7 @@ public class Controller extends HttpServlet {
 	static Statement statement = null;
 	static ResultSet resultSet = null; 
 	
-	JdbcUtil util = new JdbcUtil();
+	static JdbcUtil util = new JdbcUtil();
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,23 +52,29 @@ public class Controller extends HttpServlet {
 	public void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
 			PrintWriter out = response.getWriter();
 			resultSet = util.getResult();
+			if (resultSet!=null){
 			while(resultSet.next()) {	
-		
-			out.println("<body>");
-			out.println("<br/><br/><br/>");
-			out.println("<center>");
-			out.println("<table border='1'>");
-			out.println("<tr><th>ID</th><td>" + util.getId()+ "</td></tr>");
-			out.println("<tr><th>NAME</th><td>" + util.getName() + "</td></tr>");
-			out.println("<tr><th>AGE</th><td>" + util.getAge() + "</td></tr>");
-			out.println("<tr><th>ADDRESS</th><td>" + util.getAddress() + "</td></tr>");
-			out.println("</table>");
-			out.println("</center>");
-			out.println("</body>");
-		System.out.println("Request method is of type: " +request.getMethod());		
-		System.out.println("Request URI :: " + request.getRequestURI());		
+				int id = Integer.parseInt(resultSet.getString("sid"));
+				String address = resultSet.getString("saddress");
+				int age = Integer.parseInt(resultSet.getString("sage"));					
+				String name = resultSet.getString("sname");
+				System.out.println(id +"\t"+ name +"\t"+age+"\t"+address);		
+			
+					out.println("<body>");
+					out.println("<br/><br/><br/>");
+					out.println("<center>");
+					out.println("<table border='1'>");
+					out.println("<tr><th>ID</th><td>" + util.getId()+ "</td></tr>");
+					out.println("<tr><th>NAME</th><td>" + util.getName() + "</td></tr>");
+					out.println("<tr><th>AGE</th><td>" + util.getAge() + "</td></tr>");
+					out.println("<tr><th>ADDRESS</th><td>" + util.getAddress() + "</td></tr>");
+					out.println("</table>");
+					out.println("</center>");
+					out.println("</body>");
+					System.out.println("Request method is of type: " +request.getMethod());		
+					System.out.println("Request URI :: " + request.getRequestURI());		
+			}
+			}
 	}
-	}
-
 
 }
