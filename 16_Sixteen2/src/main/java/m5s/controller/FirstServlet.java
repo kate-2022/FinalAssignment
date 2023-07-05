@@ -29,7 +29,7 @@ public class FirstServlet extends HttpServlet {
 		response.addCookie(c2);
 
 		doPost(request, response);
-		RequestDispatcher rd = request.getRequestDispatcher("./form2.html");
+		RequestDispatcher rd = request.getRequestDispatcher("./form2.jsp");
 		rd.forward(request, response);
 
 	}
